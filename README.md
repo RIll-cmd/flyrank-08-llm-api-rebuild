@@ -98,6 +98,8 @@ An actual failure experiment temporarily used an invalid prompt: it produced 422
 
 The kill switch returned 200 in 0.014 seconds with **zero provider calls**. A real local HTTP 401 fixture produced one call, no retry, and a clean 503 with provider_status 401. **Ollama itself accepts arbitrary API keys**, so this auth check is explicitly an OpenAI-compatible auth-rejecting HTTP fixture, not a claim of Ollama key enforcement. See [stage4-proof.json](stage4-proof.json). Tests also prove 400/401/403 exclusions, timeout mapping, backoff and log fields.
 
+The unchanged 30-second OpenAI SDK timeout was also exercised against a delayed local HTTP fixture: all three application retries ran after the first attempt, all four attempts were logged as timeouts, and the endpoint returned 504 after 129.15 seconds. Reproduce this slower check separately with `python verify_timeout.py`; it does not call a model or GPU. See [timeout-proof.json](timeout-proof.json).
+
 ## API and tests
 
 The earlier task CRUD endpoints remain available through `tasks_api.py` and SQLite `repository.py`; the added endpoint is POST /triage. Run `python -m pytest -q`: **eight automated tests pass**. Tests replace the provider for failure checks; the eval and example curl used the actual local model.

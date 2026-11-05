@@ -1,0 +1,15 @@
+{
+  "status": 504,
+  "response": {
+    "error": "Model timed out after bounded retries"
+  },
+  "seconds": 129.15,
+  "provider_calls": 4,
+  "new_log_outcomes": [
+    "timeout",
+    "timeout",
+    "timeout",
+    "timeout"
+  ],
+  "note": "Real delayed local HTTP fixture; unchanged 30-second SDK timeout, three own retries; no model/GPU calls."
+}
