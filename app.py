@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from fastapi import Request
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
+from openai import APITimeoutError, APIStatusError, APIConnectionError
 from tasks_api import app
 from src.llm.schema import Input, Triage, FALLBACK
 from src.llm.client import call_model
@@ -13,13 +14,25 @@ from src.llm.parse import parse_output
 load_dotenv(Path(__file__).parent / '.env')
 app.title = 'Task API with support triage'
 
+@app.exception_handler(APITimeoutError)
+async def model_timeout(request, error):
+    return JSONResponse({'error':'Model timed out after bounded retries'},status_code=504)
+
+@app.exception_handler(APIStatusError)
+async def model_http_error(request, error):
+    return JSONResponse({'error':'Model provider rejected the request','provider_status':error.status_code},status_code=503)
+
+@app.exception_handler(APIConnectionError)
+async def model_connection_error(request, error):
+    return JSONResponse({'error':'Model provider unavailable'},status_code=503)
+
 @app.post('/triage')
 async def triage(request: Request):
     try:
         body = Input.model_validate(await request.json())
     except (ValueError,ValidationError) as exc:
         return JSONResponse({'error':'text must be a nonblank string of 1–5000 characters','field':'text'},status_code=400)
-    if os.getenv('LLM_STUB') == '1':
+    if os.getenv('LLM_STUB') == '1' or os.getenv('LLM_ENABLED','true').lower() == 'false':
         return FALLBACK
     prompt=(Path(__file__).parent/'prompts/triage-v1.md').read_text()
     raw=call_model(prompt,body.text)

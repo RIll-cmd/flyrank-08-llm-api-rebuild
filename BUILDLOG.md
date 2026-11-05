@@ -13,3 +13,6 @@ Prompt triage-v1.md has role, full schema, restrictions, unsure rule and three e
 
 ## Stage 3
 Three offline tests pass: input/stub, repair once plus quarantine, fenced output extraction. Fresh live checkpoint temporarily replaced the prompt with an instruction to always return INVALID; actual gemma response and one repair both failed schema validation, resulting422 in5.68seconds and exactlyone new quarantine line. The versioned triage prompt was restored in finally. stage3-proof.json records the actual result. No raw invalid output is returned to the caller.
+
+## Stage 4
+Implemented30second timeout, max_retries=0 onSDK, three own retries with1/2/4second backoff plus jitter, obeying numeric/date Retry-After on429. Never retries400/401/403. Structured JSONL per attempt includes version/model/token counts/duration/repair/outcome and localAPIcost0. Eight offline tests pass. Live kill switch returnedfallback200 in0.014seconds withzero providercalls. ActualHTTP401 fixture returnedclean503/provider_status401 withone providercall, no retry. Ollama itself accepts arbitraryAPIkeys, so401 enforcement was deliberately tested against a clearly labeled local auth-rejecting OpenAI-compatible fixture, not falsely attributed toOllama. stage4-proof.json records both.

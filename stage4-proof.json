@@ -1,0 +1,24 @@
+{
+  "kill_switch": {
+    "status": 200,
+    "seconds": 0.014,
+    "provider_calls": 0,
+    "response": {
+      "category": "other",
+      "urgency": "medium",
+      "suggested_team": "general",
+      "confidence": 0.0,
+      "summary": "Manual review required"
+    }
+  },
+  "wrong_key": {
+    "status": 503,
+    "seconds": 1.719,
+    "provider_calls": 1,
+    "response": {
+      "error": "Model provider rejected the request",
+      "provider_status": 401
+    }
+  },
+  "note": "Ollama accepts arbitrary API keys. The401 test uses a real local HTTP auth-rejecting OpenAI-compatible fixture, not a claim that Ollama enforced the key."
+}
