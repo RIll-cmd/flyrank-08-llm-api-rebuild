@@ -10,3 +10,6 @@ Built Pydantic input and closed output schema first; added confidence 0–1, str
 
 ## Stage 2
 Prompt triage-v1.md has role, full schema, restrictions, unsure rule and three examples. System/user messages separated; user text JSON-encoded; temperature 0. Real gemma3:1b TestClient calls with stub off returned three raw answers. Duplicate-charge: billing/high/billing; app-crash: technical/high/technical; unclear: other/medium/general. Surprise: model invented suggested_team=technical (outside enum), and marked routine duplicate-charge urgency high. This deliberately temporary raw stage exposes why Stage 3 is necessary; do not deploy this checkpoint as the final API.
+
+## Stage 3
+Three offline tests pass: input/stub, repair once plus quarantine, fenced output extraction. Fresh live checkpoint temporarily replaced the prompt with an instruction to always return INVALID; actual gemma response and one repair both failed schema validation, resulting422 in5.68seconds and exactlyone new quarantine line. The versioned triage prompt was restored in finally. stage3-proof.json records the actual result. No raw invalid output is returned to the caller.
