@@ -12,3 +12,5 @@ curl.exe -X POST http://127.0.0.1:8108/triage -H 'Content-Type: application/json
 ```
 
 The first returns 200 and the schema-valid manual-review stub; the second returns 400 naming text, before a model call. The existing task API is retained in tasks_api.py and repository.py, reused from the earlier assignment rather than claimed as newly authored here.
+
+Stage 2 observation: the small model invented suggested_team=technical for a crash report and rated a routine billing issue high urgency. Output validation and real scoring are essential; a plausible answer alone is not proof.

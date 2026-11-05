@@ -6,6 +6,7 @@ from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 from tasks_api import app
 from src.llm.schema import Input, Triage, FALLBACK
+from src.llm.client import call_model
 
 load_dotenv(Path(__file__).parent / '.env')
 app.title = 'Task API with support triage'
@@ -18,4 +19,5 @@ async def triage(request: Request):
         return JSONResponse({'error':'text must be a nonblank string of 1–5000 characters','field':'text'},status_code=400)
     if os.getenv('LLM_STUB') == '1':
         return FALLBACK
-    return JSONResponse({'error':'Live model integration is not wired yet'},status_code=503)
+    prompt=(Path(__file__).parent/'prompts/triage-v1.md').read_text()
+    return {'raw':call_model(prompt,body.text)}

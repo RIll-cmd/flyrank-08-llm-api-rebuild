@@ -7,3 +7,6 @@
 
 ## Stage 1
 Built Pydantic input and closed output schema first; added confidence 0–1, strict types, no extra fields. Reused existing task API modules (tasks_api.py and repository.py) and added /triage. LLM_STUB=1: valid message 200 and schema-valid manual review; missing, numeric, over-5000 and whitespace text each 400 with field:text. No model client exists on this route yet: zero model calls.
+
+## Stage 2
+Prompt triage-v1.md has role, full schema, restrictions, unsure rule and three examples. System/user messages separated; user text JSON-encoded; temperature 0. Real gemma3:1b TestClient calls with stub off returned three raw answers. Duplicate-charge: billing/high/billing; app-crash: technical/high/technical; unclear: other/medium/general. Surprise: model invented suggested_team=technical (outside enum), and marked routine duplicate-charge urgency high. This deliberately temporary raw stage exposes why Stage 3 is necessary; do not deploy this checkpoint as the final API.
