@@ -1,0 +1,10 @@
+[
+  {"text":"My credit card was charged twice for this month's subscription.","category":"billing","urgency":"medium","suggested_team":"billing"},
+  {"text":"Please send me a copy of my invoice.","category":"billing","urgency":"medium","suggested_team":"billing"},
+  {"text":"The app crashes every time I open a report, so I cannot work.","category":"technical","urgency":"high","suggested_team":"support"},
+  {"text":"The export button shows an error and produces no file, blocking my work.","category":"technical","urgency":"high","suggested_team":"support"},
+  {"text":"I forgot my password and cannot sign in.","category":"account","urgency":"high","suggested_team":"accounts"},
+  {"text":"Please change the email address on my profile.","category":"account","urgency":"medium","suggested_team":"accounts"},
+  {"text":"There's an issue with what happened yesterday, but I cannot describe it.","category":"other","urgency":"medium","suggested_team":"general","unsure":true},
+  {"text":"Something about my account or payment seems odd, but I cannot tell which or explain it.","category":"other","urgency":"medium","suggested_team":"general","ambiguous":true,"unsure":true}
+]

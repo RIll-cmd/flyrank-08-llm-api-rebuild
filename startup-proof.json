@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "seconds": 5.83,
+  "response": {
+    "category": "billing",
+    "urgency": "medium",
+    "suggested_team": "billing",
+    "confidence": 0.95,
+    "summary": "Customer reports a duplicate charge."
+  },
+  "preconditions": "Dependencies already installed and Ollama/model already available; local .env copied privately. Fresh Git clone and new API process, port8118."
+}

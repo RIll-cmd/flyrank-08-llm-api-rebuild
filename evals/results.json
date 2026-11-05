@@ -1,0 +1,171 @@
+{
+  "date": "2026-11-05",
+  "prompt_version": "triage-v1",
+  "model": "qwen3-vl:2b-instruct",
+  "category_correct": 6,
+  "total": 8,
+  "category_accuracy": 0.75,
+  "closed_fields_correct": 3,
+  "results": [
+    {
+      "case": 1,
+      "input": "My credit card was charged twice for this month's subscription.",
+      "expected": {
+        "category": "billing",
+        "urgency": "medium",
+        "suggested_team": "billing"
+      },
+      "status": 200,
+      "response": {
+        "category": "billing",
+        "urgency": "medium",
+        "suggested_team": "billing",
+        "confidence": 0.95,
+        "summary": "Customer reports a duplicate charge for subscription."
+      },
+      "category_match": true,
+      "closed_fields_match": true,
+      "seconds": 6.45
+    },
+    {
+      "case": 2,
+      "input": "Please send me a copy of my invoice.",
+      "expected": {
+        "category": "billing",
+        "urgency": "medium",
+        "suggested_team": "billing"
+      },
+      "status": 200,
+      "response": {
+        "category": "billing",
+        "urgency": "low",
+        "suggested_team": "billing",
+        "confidence": 0.95,
+        "summary": "Customer requests a copy of their invoice."
+      },
+      "category_match": true,
+      "closed_fields_match": false,
+      "seconds": 0.83
+    },
+    {
+      "case": 3,
+      "input": "The app crashes every time I open a report, so I cannot work.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high",
+        "suggested_team": "support"
+      },
+      "status": 200,
+      "response": {
+        "category": "technical",
+        "urgency": "high",
+        "suggested_team": "support",
+        "confidence": 0.95,
+        "summary": "User reports app crashes during report opening, affecting work."
+      },
+      "category_match": true,
+      "closed_fields_match": true,
+      "seconds": 0.89
+    },
+    {
+      "case": 4,
+      "input": "The export button shows an error and produces no file, blocking my work.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high",
+        "suggested_team": "support"
+      },
+      "status": 200,
+      "response": {
+        "category": "technical",
+        "urgency": "high",
+        "suggested_team": "support",
+        "confidence": 0.95,
+        "summary": "User reports export button error and no file generated."
+      },
+      "category_match": true,
+      "closed_fields_match": true,
+      "seconds": 0.92
+    },
+    {
+      "case": 5,
+      "input": "I forgot my password and cannot sign in.",
+      "expected": {
+        "category": "account",
+        "urgency": "high",
+        "suggested_team": "accounts"
+      },
+      "status": 200,
+      "response": {
+        "category": "account",
+        "urgency": "medium",
+        "suggested_team": "accounts",
+        "confidence": 0.95,
+        "summary": "Customer unable to sign in due to forgotten password."
+      },
+      "category_match": true,
+      "closed_fields_match": false,
+      "seconds": 1.01
+    },
+    {
+      "case": 6,
+      "input": "Please change the email address on my profile.",
+      "expected": {
+        "category": "account",
+        "urgency": "medium",
+        "suggested_team": "accounts"
+      },
+      "status": 200,
+      "response": {
+        "category": "account",
+        "urgency": "low",
+        "suggested_team": "accounts",
+        "confidence": 0.95,
+        "summary": "Customer requests to update their email address in the profile."
+      },
+      "category_match": true,
+      "closed_fields_match": false,
+      "seconds": 0.98
+    },
+    {
+      "case": 7,
+      "input": "There's an issue with what happened yesterday, but I cannot describe it.",
+      "expected": {
+        "category": "other",
+        "urgency": "medium",
+        "suggested_team": "general"
+      },
+      "status": 200,
+      "response": {
+        "category": "technical",
+        "urgency": "medium",
+        "suggested_team": "support",
+        "confidence": 0.85,
+        "summary": "User reports an issue with a previous event that cannot be described."
+      },
+      "category_match": false,
+      "closed_fields_match": false,
+      "seconds": 0.88
+    },
+    {
+      "case": 8,
+      "input": "Something about my account or payment seems odd, but I cannot tell which or explain it.",
+      "expected": {
+        "category": "other",
+        "urgency": "medium",
+        "suggested_team": "general"
+      },
+      "status": 200,
+      "response": {
+        "category": "account",
+        "urgency": "medium",
+        "suggested_team": "accounts",
+        "confidence": 0.85,
+        "summary": "Customer reports account or payment issue that is unclear but needs attention."
+      },
+      "category_match": false,
+      "closed_fields_match": false,
+      "seconds": 0.92
+    }
+  ]
+}

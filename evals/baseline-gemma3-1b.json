@@ -1,0 +1,163 @@
+{
+  "date": "2026-11-05",
+  "prompt_version": "triage-v1",
+  "category_correct": 3,
+  "total": 8,
+  "category_accuracy": 0.375,
+  "closed_fields_correct": 0,
+  "results": [
+    {
+      "case": 1,
+      "input": "My credit card was charged twice for this month's subscription.",
+      "expected": {
+        "category": "billing",
+        "urgency": "medium",
+        "suggested_team": "billing"
+      },
+      "status": 200,
+      "response": {
+        "category": "billing",
+        "urgency": "high",
+        "suggested_team": "billing",
+        "confidence": 0.95,
+        "summary": "Customer reports a duplicate charge on their credit card."
+      },
+      "category_match": true,
+      "closed_fields_match": false,
+      "seconds": 2.53
+    },
+    {
+      "case": 2,
+      "input": "Please send me a copy of my invoice.",
+      "expected": {
+        "category": "billing",
+        "urgency": "medium",
+        "suggested_team": "billing"
+      },
+      "status": 200,
+      "response": {
+        "category": "billing",
+        "urgency": "low",
+        "suggested_team": "billing",
+        "confidence": 0.95,
+        "summary": "Customer requests invoice copy."
+      },
+      "category_match": true,
+      "closed_fields_match": false,
+      "seconds": 0.67
+    },
+    {
+      "case": 3,
+      "input": "The app crashes every time I open a report, so I cannot work.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high",
+        "suggested_team": "support"
+      },
+      "status": 422,
+      "response": {
+        "error": "Model output failed validation after one repair"
+      },
+      "category_match": false,
+      "closed_fields_match": false,
+      "seconds": 1.36
+    },
+    {
+      "case": 4,
+      "input": "The export button shows an error and produces no file, blocking my work.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high",
+        "suggested_team": "support"
+      },
+      "status": 422,
+      "response": {
+        "error": "Model output failed validation after one repair"
+      },
+      "category_match": false,
+      "closed_fields_match": false,
+      "seconds": 1.38
+    },
+    {
+      "case": 5,
+      "input": "I forgot my password and cannot sign in.",
+      "expected": {
+        "category": "account",
+        "urgency": "high",
+        "suggested_team": "accounts"
+      },
+      "status": 200,
+      "response": {
+        "category": "technical",
+        "urgency": "high",
+        "suggested_team": "support",
+        "confidence": 0.95,
+        "summary": "Customer reports a failed login attempt."
+      },
+      "category_match": false,
+      "closed_fields_match": false,
+      "seconds": 0.66
+    },
+    {
+      "case": 6,
+      "input": "Please change the email address on my profile.",
+      "expected": {
+        "category": "account",
+        "urgency": "medium",
+        "suggested_team": "accounts"
+      },
+      "status": 200,
+      "response": {
+        "category": "account",
+        "urgency": "low",
+        "suggested_team": "accounts",
+        "confidence": 0.85,
+        "summary": "Customer requests profile update."
+      },
+      "category_match": true,
+      "closed_fields_match": false,
+      "seconds": 0.64
+    },
+    {
+      "case": 7,
+      "input": "There's an issue with what happened yesterday, but I cannot describe it.",
+      "expected": {
+        "category": "other",
+        "urgency": "medium",
+        "suggested_team": "general"
+      },
+      "status": 200,
+      "response": {
+        "category": "technical",
+        "urgency": "high",
+        "suggested_team": "support",
+        "confidence": 0.9,
+        "summary": "Customer reports a technical issue with yesterday\u2019s events."
+      },
+      "category_match": false,
+      "closed_fields_match": false,
+      "seconds": 0.66
+    },
+    {
+      "case": 8,
+      "input": "Something about my account or payment seems odd, but I cannot tell which or explain it.",
+      "expected": {
+        "category": "other",
+        "urgency": "medium",
+        "suggested_team": "general"
+      },
+      "status": 200,
+      "response": {
+        "category": "account",
+        "urgency": "medium",
+        "suggested_team": "accounts",
+        "confidence": 0.85,
+        "summary": "Account issues require investigation."
+      },
+      "category_match": false,
+      "closed_fields_match": false,
+      "seconds": 0.64
+    }
+  ],
+  "model": "gemma3:1b"
+}
